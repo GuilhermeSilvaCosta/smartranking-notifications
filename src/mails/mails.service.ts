@@ -29,9 +29,13 @@ export class MailsService {
 
     this.mailerService.sendMail({
       to: challenged.email,
-      from: `"SMART RANKING" <noreply@smartranking.com>`,
       subject: 'Notificação de Desafio',
-      html: `<html><body><p>Deseja aceitar o desafio enviado por ${requester.name} (${requester.email})</p></body></html>`,
+      template: 'notification',
+      context: {
+        name: challenged.name,
+        requesterName: requester.name,
+        requesterMail: requester.email,
+      },
     });
   }
 }
